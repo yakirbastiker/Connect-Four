@@ -35,7 +35,6 @@ class Connect4 {
 
         function findLastEmptyCell(col) {
             const cells = $(`.col[data-col='${col}']`);
-            //console.log(cells);
 
             for(let i = cells.length -1; i>=0; i--){
                 const $cell = $(cells[i]);
@@ -51,10 +50,7 @@ class Connect4 {
         $board.on('mouseenter', '.col.empty', function() {
 
             if(that.isGameOver) return;
-
-           // console.log('here', this);
             const col = $(this).data('col');
-           // console.log(col)
 
            //need to select the empty cell
            const $lastEmptyCell = findLastEmptyCell(col);
@@ -86,9 +82,10 @@ class Connect4 {
             );
 
             if(winner) {
-                // do stuff
                 that.isGameOver = true;
-                alert(`Game Over! ${that.player}  has won`);
+                let messege = `<div class="messege"><p>Game Over! ${that.player}  has won</p></div>`;
+                $("body").append(messege);
+                
                 $('.col.empty').removeClass('empty');
                 return;
             }
@@ -162,7 +159,11 @@ class Connect4 {
 
 
        restart() {
+           if($(".messege")){
+            $(".messege").remove();
+           }
            this.createGrid();
            this.onPlayerMove();
        }
+
 }

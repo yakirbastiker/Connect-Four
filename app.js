@@ -4,6 +4,7 @@ $(document).ready(function(){
 
     connect4.onPlayerMove = function() {
         $('#player').text(connect4.player)
+        $('#player').attr('class', connect4.player)
     };
 
     $('#restart').click(function(){
